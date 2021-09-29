@@ -55,13 +55,11 @@ int main (int argc, char** argv) {
 		exit(EXIT_FAILURE);
 	}
 	while ((fscanf (fp, "%s", file_word)) != EOF) {
-		if ( sprintf (&file_word, "%s ",file_word) == -1) {
-			puts("asprintf err main");
-			exit(EXIT_FAILURE);
-		}
+		strcat(file_word, " ");
 		text = realloc (text, (strlen(text) + strlen(file_word) + 1) * sizeof(char));
 		strcat(text, file_word);
 	}
+
 	if (fclose(fp)) {
 		puts("Failed closing file");
 		exit(EXIT_FAILURE);
@@ -95,7 +93,7 @@ int main (int argc, char** argv) {
 		exit(EXIT_FAILURE);
 	}
 
-	printf("\n%s\n\n\n%s\n", r_text, text);
+	printf("\n%s\n\n\n%s\n\n", r_text, text);
 
 	counting_words_sentences (text);
 
